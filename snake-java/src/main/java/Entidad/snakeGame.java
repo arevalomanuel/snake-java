@@ -21,6 +21,9 @@ public class snakeGame extends JPanel implements ActionListener {
     private int ALL_DOTS = 500;
 
     private int DELAY = 50;
+    
+    private int[] ejeX = new int[10];
+    private int[] ejeY = new int[10];
 
     //time advance
     Timer timer;
