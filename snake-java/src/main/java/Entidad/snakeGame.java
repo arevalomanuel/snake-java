@@ -18,12 +18,9 @@ public class snakeGame extends JPanel implements ActionListener {
     private final int L_WIDTH = 500;
 
     private int DOR_ZISE = 10;
-    private int ALL_DOTS = 500;
+    private int ALL_DOTS = 900;
 
     private int DELAY = 50;
-    
-    private int[] ejeX = new int[10];
-    private int[] ejeY = new int[10];
 
     //time advance
     Timer timer;
@@ -53,18 +50,37 @@ public class snakeGame extends JPanel implements ActionListener {
 
     public void initBoard() {
         addKeyListener(new TAdapter());
-       setBackground(Color.black);
+        setBackground(Color.black);
         setFocusable(true);
-        
+
         setPreferredSize(new Dimension(L_WIDTH, L_HEIGHT));
-        
-   
     }
-    
-    private class TAdapter extends KeyAdapter{
-    
+
+    //asigna el lado para donde se movera la serpiente en su primer movimiento (random)
+    public void assignSide() {
+        d_left = true;
+        d_rigth = false;
+        d_up = false;
+        d_down = false;
     }
-    
+
+    public void guardarImagenes() {
+    }
+
+    public void randomApple() {
+    }
+
+    public void movimiento() {
+    }
+
+    public void colicion() {
+
+    }
+
+    private class TAdapter extends KeyAdapter {
+
+    }
+
     @Override
     public void actionPerformed(ActionEvent ae) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
