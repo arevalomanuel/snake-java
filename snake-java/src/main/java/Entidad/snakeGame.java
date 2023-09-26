@@ -8,6 +8,7 @@ import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 import javax.swing.JPanel;
 import javax.swing.Timer;
 
@@ -71,19 +72,56 @@ public class snakeGame extends JPanel implements ActionListener {
     }
 
     public void movimiento() {
+        if (d_left) {
+            d_rigth = false;
+            d_up = false;
+            d_down = false;
+        }
+        if (d_rigth) {
+            d_left = false;
+            d_up = false;
+            d_down = false;
+        }
+        if (d_up) {
+            d_left = false;
+            d_rigth = false;
+            d_down = false;
+        }
+        if (d_down) {
+            d_left = false;
+            d_rigth = false;
+            d_up = false;
+        }
     }
 
     public void colicion() {
 
     }
 
-    private class TAdapter extends KeyAdapter {
-
-    }
-
     @Override
     public void actionPerformed(ActionEvent ae) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        movimiento();
     }
+
+    private class TAdapter extends KeyAdapter {
+
+        public void KeyPresset(KeyEvent e) {
+            if (d_left) {
+                
+            }
+            if (d_rigth) {
+
+            }
+            if (d_up) {
+
+            }
+            if (d_down) {
+
+            }
+        }
+
+    }
+
+}
 
 }
