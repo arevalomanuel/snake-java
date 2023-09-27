@@ -45,6 +45,9 @@ public class snakeGame extends JPanel implements ActionListener {
     private boolean d_rigth;
     private boolean d_up;
     private boolean d_down;
+    
+    //si esta activo el juego
+    private boolean inGame;
 
     public snakeGame() {
         initBoard();
