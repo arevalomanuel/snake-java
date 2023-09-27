@@ -9,6 +9,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
+import javax.swing.ImageIcon;
 import javax.swing.JPanel;
 import javax.swing.Timer;
 
@@ -66,6 +67,8 @@ public class snakeGame extends JPanel implements ActionListener {
     }
 
     public void guardarImagenes() {
+         ImageIcon iid = new ImageIcon("src/img/body.png");
+        body= iid.getImage();
     }
 
     public void randomApple() {
@@ -121,7 +124,6 @@ public class snakeGame extends JPanel implements ActionListener {
         }
 
     }
-
 }
 
-}
+
