@@ -4,6 +4,7 @@ package Entidad;
 
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.Graphics;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -61,6 +62,17 @@ public class snakeGame extends JPanel implements ActionListener {
         setPreferredSize(new Dimension(L_WIDTH, L_HEIGHT));
     }
 
+    public void paintComponent(Graphics g) {
+        super.paintComponent(g);
+
+        doDrawing(g);
+    }
+    
+     private void doDrawing(Graphics g) {
+         if (inGame) {
+             
+         }
+    }
     //asigna el lado para donde se movera la serpiente en su primer movimiento (random)
     public void assignSide() {
         d_left = true;
@@ -108,6 +120,8 @@ public class snakeGame extends JPanel implements ActionListener {
     public void actionPerformed(ActionEvent ae) {
         movimiento();
     }
+
+   
 
     private class TAdapter extends KeyAdapter {
 
