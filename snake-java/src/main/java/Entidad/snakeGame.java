@@ -4,8 +4,10 @@ package Entidad;
 
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.Event;
 import java.awt.Graphics;
 import java.awt.Image;
+import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyAdapter;
@@ -34,8 +36,8 @@ public class snakeGame extends JPanel implements ActionListener {
     Image body;
 
     //long on snake
-    private int x[] = new int[ALL_DOTS];
-    private int y[] = new int[ALL_DOTS];
+    private int snakeX[] = new int[ALL_DOTS];
+    private int snakeY[] = new int[ALL_DOTS];
 
     //apple position
     private int appleX;
@@ -46,44 +48,53 @@ public class snakeGame extends JPanel implements ActionListener {
     private boolean d_rigth;
     private boolean d_up;
     private boolean d_down;
-    
+
     //si esta activo el juego
-    private boolean inGame;
+    private boolean inGame = true;
 
     public snakeGame() {
-        initBoard();
+        initGame();
     }
 
-    public void initBoard() {
+    public void initGame() {
         addKeyListener(new TAdapter());
         setBackground(Color.black);
         setFocusable(true);
 
         setPreferredSize(new Dimension(L_WIDTH, L_HEIGHT));
+
+        guardarImagenes();
     }
 
+    public void guardarImagenes() {
+        ImageIcon iid = new ImageIcon("src/main/java/Img/greenBody.png");
+        body = iid.getImage();
+
+        timer = new Timer(DELAY, this);
+        timer.start();
+    }
+
+    @Override
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
 
         doDrawing(g);
     }
-    
-     private void doDrawing(Graphics g) {
-         if (inGame) {
-             
-         }
+
+    private void doDrawing(Graphics g) {
+        if (inGame) {
+            g.drawImage(body, snakeX[0], snakeY[0], this);
+        }
+
+        //  Toolkit.getDefaultToolkit().sync();
     }
+
     //asigna el lado para donde se movera la serpiente en su primer movimiento (random)
     public void assignSide() {
         d_left = true;
         d_rigth = false;
         d_up = false;
         d_down = false;
-    }
-
-    public void guardarImagenes() {
-         ImageIcon iid = new ImageIcon("src/img/body.png");
-        body= iid.getImage();
     }
 
     public void randomApple() {
@@ -118,29 +129,40 @@ public class snakeGame extends JPanel implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent ae) {
-        movimiento();
-    }
+        if (inGame) {
+            movimiento();
+        }
 
-   
+        repaint();
+    }
 
     private class TAdapter extends KeyAdapter {
 
         public void KeyPresset(KeyEvent e) {
-            if (d_left) {
-                
+            int key = e.getKeyCode();
+
+            if (key == KeyEvent.VK_W) {
+                d_rigth = false;
+                d_up = false;
+                d_down = false;
             }
             if (d_rigth) {
-
+                d_left = false;
+                d_up = false;
+                d_down = false;
             }
             if (d_up) {
-
+                d_left = false;
+                d_rigth = false;
+                d_down = false;
             }
             if (d_down) {
-
+                d_left = false;
+                d_rigth = false;
+                d_up = false;
             }
+
         }
 
     }
 }
-
-
