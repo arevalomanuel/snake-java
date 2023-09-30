@@ -22,6 +22,7 @@ public class snakeGame extends JPanel implements ActionListener {
     private final int L_HEIGHT = 500;
     private final int L_WIDTH = 500;
 
+    private int dots;
     private int DOR_ZISE = 10;
     private int ALL_DOTS = 900;
 
@@ -53,10 +54,10 @@ public class snakeGame extends JPanel implements ActionListener {
     private boolean inGame = true;
 
     public snakeGame() {
-        initGame();
+        initBoard();
     }
 
-    public void initGame() {
+    public void initBoard() {
         addKeyListener(new TAdapter());
         setBackground(Color.black);
         setFocusable(true);
@@ -64,12 +65,30 @@ public class snakeGame extends JPanel implements ActionListener {
         setPreferredSize(new Dimension(L_WIDTH, L_HEIGHT));
 
         guardarImagenes();
+        assignSide() ;
+        initGame();
     }
 
     public void guardarImagenes() {
         ImageIcon iid = new ImageIcon("src/main/java/Img/greenBody.png");
         body = iid.getImage();
-
+        
+//         ImageIcon iid = new ImageIcon("src/main/java/Img/greenBody.png");
+//       apple = iid.getImage();
+      
+//         ImageIcon iid = new ImageIcon("src/main/java/Img/greenBody.png");
+//        head = iid.getImage();
+    
+    }
+    
+    public void initGame(){
+        dots = 3;
+        
+         for (int i = 0; i < dots; i++) {
+            snakeX[i] = 50 - i * 10;
+            snakeY[i] = 50;
+        }
+        
         timer = new Timer(DELAY, this);
         timer.start();
     }
@@ -85,8 +104,8 @@ public class snakeGame extends JPanel implements ActionListener {
         if (inGame) {
             g.drawImage(body, snakeX[0], snakeY[0], this);
         }
-
-        //  Toolkit.getDefaultToolkit().sync();
+       
+         Toolkit.getDefaultToolkit().sync();
     }
 
     //asigna el lado para donde se movera la serpiente en su primer movimiento (random)
@@ -141,22 +160,23 @@ public class snakeGame extends JPanel implements ActionListener {
         public void KeyPresset(KeyEvent e) {
             int key = e.getKeyCode();
 
-            if (key == KeyEvent.VK_W) {
+            if ((key == KeyEvent.VK_D) && (!d_left)) {
+                snakeX[0]+=10;
                 d_rigth = false;
                 d_up = false;
                 d_down = false;
             }
-            if (d_rigth) {
+            if ((key == KeyEvent.VK_A) && (!d_rigth)) {
                 d_left = false;
                 d_up = false;
                 d_down = false;
             }
-            if (d_up) {
+            if ((key == KeyEvent.VK_W) && (!d_up)) {
                 d_left = false;
                 d_rigth = false;
                 d_down = false;
             }
-            if (d_down) {
+            if ((key == KeyEvent.VK_W) && (!d_down)) {
                 d_left = false;
                 d_rigth = false;
                 d_up = false;
