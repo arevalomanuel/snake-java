@@ -25,7 +25,7 @@ public class snakeGame extends JPanel implements ActionListener {
     private int dots;
     private final int DOT_SIZE = 10;
     private final int ALL_DOTS = 900;
-
+    private final int RAND_POS = 50;
     private final int DELAY = 200;
 
     //time advance
@@ -46,9 +46,9 @@ public class snakeGame extends JPanel implements ActionListener {
 
     //direction of snake
     private boolean d_left = false;
-    private boolean d_rigth= false;
-    private boolean d_up= false;
-    private boolean d_down= true;
+    private boolean d_rigth = false;
+    private boolean d_up = false;
+    private boolean d_down = true;
 
     //si esta activo el juego
     private boolean inGame = true;
@@ -98,15 +98,22 @@ public class snakeGame extends JPanel implements ActionListener {
         doDrawing(g);
     }
 
+    private void manzanaRandom() {
+        int r = (int) (Math.random() * RAND_POS);
+        appleX = ((r * DOT_SIZE));
+
+        r = (int) (Math.random() * RAND_POS);
+        appleY = ((r * DOT_SIZE));
+    }
+
     private void doDrawing(Graphics g) {
         if (inGame) {
-            
-                 g.drawImage(body, snakeX[0], snakeY[0], this);
-            
-           Toolkit.getDefaultToolkit().sync();
+
+            g.drawImage(body, snakeX[0], snakeY[0], this);
+
+            Toolkit.getDefaultToolkit().sync();
         }
 
-        
     }
 
     //asigna el lado para donde se movera la serpiente en su primer movimiento (random)
@@ -116,16 +123,15 @@ public class snakeGame extends JPanel implements ActionListener {
 //        d_up = false;
 //        d_down = false;
 //    }
-
     public void randomApple() {
     }
 
     public void movimiento() {
-       for (int z = dots; z > 0; z--) {
+        for (int z = dots; z > 0; z--) {
             snakeX[z] = snakeX[(z - 1)];
             snakeY[z] = snakeY[(z - 1)];
         }
-        
+
         if (d_left) {
             snakeX[0] -= DOT_SIZE;
         }
@@ -159,32 +165,31 @@ public class snakeGame extends JPanel implements ActionListener {
         public void keyPressed(KeyEvent e) {
             int key = e.getKeyCode();
 
-             if ((key == KeyEvent.VK_A) && (!d_rigth)) {
+            if ((key == KeyEvent.VK_A) && (!d_rigth)) {
                 d_left = true;
                 d_up = false;
                 d_down = false;
-                
+
             }
-            
+
             if ((key == KeyEvent.VK_D) && (!d_left)) {
                 d_rigth = true;
                 d_up = false;
                 d_down = false;
-              
+
             }
-           
+
             if ((key == KeyEvent.VK_W) && (!d_down)) {
                 d_up = true;
                 d_rigth = false;
                 d_left = false;
-              
+
             }
             if ((key == KeyEvent.VK_S) && (!d_up)) {
                 d_down = true;
                 d_left = false;
                 d_rigth = false;
-              
-                
+
             }
 
         }
